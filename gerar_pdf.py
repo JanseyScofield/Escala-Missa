@@ -2,6 +2,7 @@ from fpdf import FPDF
 import Domingo
 
 def receber_nomes(dia : int, mes : int):
+    """Essa função recebe do usuário os nomes das pessoas que irão servir em cada função a partir do dia  mês passados como parâmetros e retorna todos os nomes digitados."""
     print(f"Quem irá servir no dia {dia}/{mes}? ")
     vozes = []
     salmo = input("Salmo: ")
