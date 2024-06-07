@@ -1,21 +1,35 @@
 from fpdf import FPDF
+import Domingo
 
-def gerar_escala_missa(): 
-    pdf = FPDF()
+def receber_nomes(dia : int, mes : int):
+    print(f"Quem irá servir no dia {dia}/{mes}? ")
+    vozes = []
+    salmo = input("Salmo: ")
+    for iCont in range(3):
+        vozes.append(input(f"Voz {iCont + 1}: "))
+    violao = input("Violão: ")
+    teclado = input("Teclado: ")
+    bat_cajon = input("Bateria ou cajon: ")
+    return salmo, vozes, violao, teclado, bat_cajon
 
-    pdf.add_page()
-    pdf.image("modelo-escala.png", x=0, y =0)
-    pdf.set_font("Arial", "B", 12)
-
-    pdf.set_text_color(255, 255, 255)
-    pdf.text(68, 26, " 01/01")
-    pdf.text(100, 26, "01/01")
-    pdf.text(131, 26, "01/01")
-    pdf.text(162, 26, "01/01")
-
-    pdf.set_text_color(0, 0, 0)
-    pdf.text(63, 46, "salmo 1")
-    pdf.text(93, 46, "salmo 2")
-    pdf.text(125, 46, "salmo 3")
-    pdf.text(157, 46, "salmo 4")
-    pdf.output("Escala Missa de 12.pdf")
+def gerar_escala_missa(primeiro_domingo : str): 
+    """Função utilizada para fazer uma escala de missa:
+    Coordenadas para datas: 
+     - 68, 26;
+     - 100, 26;
+     - 131, 26;
+     - 162, 26
+     Coordenatas para salmos:
+     - 68, 46;
+     - 93, 46;
+     - 125, 46;
+     - 157, 46
+    """
+    lista_data = primeiro_domingo.split("/")
+    dia = int(lista_data[0])
+    mes = int(lista_data[1])
+    listaDomingos = []
+    while dia <= 31:
+        listaDomingos.append(receber_nomes(dia, mes))
+        dia += 7
+    print(listaDomingos)
