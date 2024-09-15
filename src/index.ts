@@ -1,5 +1,5 @@
-import express from 'express'
-import connectDatabase from 'database/db'
+import express from 'express';
+import connectDatabase from 'database/db';
 const door : Number = 3000;
 
 const app = express();
