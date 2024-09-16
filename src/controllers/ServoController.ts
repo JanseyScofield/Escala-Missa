@@ -12,7 +12,17 @@ function cadastrarServo(req : Request, res : Response){
     });
 }
 
+function listarServos(req : Request, res  : Response){
+    services.listarServos()
+    .then((listaServos : any) => {
+        return res.status(200).send({servos:listaServos});
+    })
+    .catch((e : Error) =>{
+        return res.status(404).send({erro : e});
+    });
+}
 
 module.exports = {
     cadastrarServo,
+    listarServos,
   }

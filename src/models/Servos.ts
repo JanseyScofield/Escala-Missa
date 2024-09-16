@@ -1,20 +1,20 @@
 import mongoose from "mongoose";
 
 const servosSchema = new mongoose.Schema({
-    nome:{
+    nome: {
         type: String,
-        require: true
+        required : true
     },
-    canta:{
-        type: Boolean 
-    },
-    tocaViolao:{
+    canta: {
         type: Boolean,
     },
-    tocaTeclado:{
+    tocaViolao: {
+        type: Boolean,
+    },
+    tocaTeclado: {
         type: Boolean
     },
-    tocaPercussao:{
+    tocaPercussao: {
         type: Boolean
     }
 });

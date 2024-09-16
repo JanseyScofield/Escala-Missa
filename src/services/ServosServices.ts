@@ -10,4 +10,13 @@ async function cadastrarServo(novoServo : any) {
     }
 }
 
-module.exports = {cadastrarServo};
+async function listarServos(){
+    try{
+        return await Servos.find();
+    }
+    catch(e){
+        return (e as Error). message;
+    }
+}
+
+module.exports = {cadastrarServo, listarServos};
