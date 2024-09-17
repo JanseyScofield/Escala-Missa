@@ -1,10 +1,9 @@
 import e, {Request,Response} from 'express';
-
-const services = require('services/ServosServices')
+import {create, read, readById} from 'services/ServosServices';
 
 function cadastrarServo(req: Request, res: Response) {
     console.log(req.body)
-    services.cadastrarServo(req.body)
+    create(req.body)
         .then((novoServo: any) => {
             return res.status(201).send({ servoCadastrado: novoServo });
         })
@@ -15,7 +14,7 @@ function cadastrarServo(req: Request, res: Response) {
 
 
 function listarServos(req : Request, res  : Response){
-    services.listarServos()
+    read()
     .then((listaServos : any) => {
         return res.status(200).send({servos:listaServos});
     })

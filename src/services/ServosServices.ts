@@ -1,6 +1,6 @@
 import Servos from "models/Servos";
 
-async function cadastrarServo(novoServo: any) {
+async function create(novoServo: any) {
     try {
         const servoCadastrado = await Servos.create(novoServo);
         return servoCadastrado;
@@ -9,13 +9,27 @@ async function cadastrarServo(novoServo: any) {
     }
 }
 
-async function listarServos() {
+async function read() {
     try {
         return await Servos.find();
     } catch (e) {
         throw new Error((e as Error).message);
     }
 }
+async function readById(id : String) {
+    try {
+        return await Servos.findOne(id);
+    } catch (e) {
+        throw new Error((e as Error).message);
+    }
+}
+// async function deletarServosPorId(id : String){
+//     try{
+//         await 
+//     }
+//     catch (e) {
+//         throw new Error((e as Error).message);
+//     }
+// }
 
-
-module.exports = {cadastrarServo, listarServos};
+export {create, read, readById};
