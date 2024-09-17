@@ -18,7 +18,7 @@ async function read() {
 }
 async function readById(id : String) {
     try {
-        return await Servos.findOne(id);
+        return await Servos.findOne({_id : id});
     } catch (e) {
         throw new Error((e as Error).message);
     }

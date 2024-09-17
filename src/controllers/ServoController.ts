@@ -23,4 +23,15 @@ function listarServos(req : Request, res  : Response){
     });
 }
 
-export { cadastrarServo, listarServos };
+function listarServosPorId(req : Request, res : Response){
+    const {id} = req.params;
+    readById(id)
+    .then((servo : any) => {
+        return res.status(200).send({servoEncontrado : servo})
+    })
+    .catch((e : Error) =>{
+        return res.status(404).send({erro : e});
+    });
+}
+
+export { cadastrarServo, listarServos, listarServosPorId};
