@@ -24,6 +24,25 @@ async function readById(id : String) {
     }
 }
 
+async function updateById(id : String, novosDados : any) {
+    try{
+        await Servos.findByIdAndUpdate(
+            {_id : id},
+            {
+                nome : novosDados.nome,
+                canta : novosDados.canta,
+                tocaViolao : novosDados.tocaViolao,
+                tocaTeclado : novosDados.tocaTeclado,
+                tocaPercussao : novosDados.tocaPercussao
+            }
+        );
+        return readById(id);
+    } 
+    catch(e){
+        throw new Error((e as Error).message);
+    }   
+}
+
 async function deleteById(id : String){
     try{
         return await Servos.findOneAndDelete({_id : id});
@@ -33,4 +52,4 @@ async function deleteById(id : String){
     }
 }
 
-export {create, read, readById, deleteById};
+export {create, read, readById, updateById, deleteById};
