@@ -23,13 +23,14 @@ async function readById(id : String) {
         throw new Error((e as Error).message);
     }
 }
-// async function deletarServosPorId(id : String){
-//     try{
-//         await 
-//     }
-//     catch (e) {
-//         throw new Error((e as Error).message);
-//     }
-// }
 
-export {create, read, readById};
+async function deleteById(id : String){
+    try{
+        return await Servos.findOneAndDelete({_id : id});
+    }
+    catch (e) {
+        throw new Error((e as Error).message);
+    }
+}
+
+export {create, read, readById, deleteById};

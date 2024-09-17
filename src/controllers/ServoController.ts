@@ -1,5 +1,5 @@
 import e, {Request,Response} from 'express';
-import {create, read, readById} from 'services/ServosServices';
+import {create, read, readById, deleteById} from 'services/ServosServices';
 
 function cadastrarServo(req: Request, res: Response) {
     console.log(req.body)
@@ -34,4 +34,15 @@ function listarServosPorId(req : Request, res : Response){
     });
 }
 
-export { cadastrarServo, listarServos, listarServosPorId};
+function deletarServoPorId(req :  Request, res : Response){
+    const {id} = req.params;
+    deleteById(id)
+    .then((servo : any) =>{
+        return res.status(200).send({servoDeletado : servo});
+    })
+    .catch((e : Error) =>{
+        return res.status(404).send({erro : e});
+    });
+}
+
+export { cadastrarServo, listarServos, listarServosPorId, deletarServoPorId};
