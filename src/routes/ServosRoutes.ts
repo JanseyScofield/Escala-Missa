@@ -1,9 +1,9 @@
 import express from 'express';
+import { cadastrarServo, listarServos } from 'controllers/ServoController';
 
-const controller = require('controllers/ServoController');
 const router = express.Router();
 
-router.post('/cadastrarNovoServo',controller.cadastrarServo);
-router.get('/',controller.listarServos);
+router.post('/cadastrarNovoServo', cadastrarServo);
+router.get('/', listarServos);
 
-module.exports = router;
+export default router;

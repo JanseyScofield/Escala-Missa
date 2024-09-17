@@ -1,13 +1,16 @@
 import express from 'express';
 import connectDatabase from 'database/db';
+import servosRoutes from 'routes/ServosRoutes'; 
 
-const door : Number = 3000;
+const door: number = 3000; 
 const app = express();
-const servosRoutes = require('routes/ServosRoutes.ts');
 
-app.use('/servos',servosRoutes);
+app.use(express.json());
 
-connectDatabase()
-app.listen(door,() =>{
-    console.log('Listen at the door ' + door);
+app.use('/servos', servosRoutes);
+
+connectDatabase();
+
+app.listen(door, () => {
+    console.log('Listening at port ' + door);
 });

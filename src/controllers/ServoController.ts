@@ -2,15 +2,17 @@ import e, {Request,Response} from 'express';
 
 const services = require('services/ServosServices')
 
-function cadastrarServo(req : Request, res : Response){
+function cadastrarServo(req: Request, res: Response) {
+    console.log(req.body)
     services.cadastrarServo(req.body)
-    .then((novoServo : any) =>{
-        return res.status(202).send({servoCadastrado:novoServo});
-    })
-    .catch((e : Error) =>{
-        return res.status(400).send({erro : e});
-    });
+        .then((novoServo: any) => {
+            return res.status(201).send({ servoCadastrado: novoServo });
+        })
+        .catch((e: Error) => {
+            return res.status(400).send({ erro: e.message });
+        });
 }
+
 
 function listarServos(req : Request, res  : Response){
     services.listarServos()
@@ -22,7 +24,4 @@ function listarServos(req : Request, res  : Response){
     });
 }
 
-module.exports = {
-    cadastrarServo,
-    listarServos,
-  }
+export { cadastrarServo, listarServos };
