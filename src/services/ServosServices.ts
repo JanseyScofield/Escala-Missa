@@ -16,10 +16,20 @@ async function read() {
         throw new Error((e as Error).message);
     }
 }
+
 async function readById(id : String) {
     try {
         return await Servos.findOne({_id : id});
     } catch (e) {
+        throw new Error((e as Error).message);
+    }
+}
+
+async function readBySkill(habilidade : string){
+    try{
+        return await Servos.find({[habilidade] : true});
+    }
+    catch(e){
         throw new Error((e as Error).message);
     }
 }
@@ -52,4 +62,4 @@ async function deleteById(id : String){
     }
 }
 
-export {create, read, readById, updateById, deleteById};
+export {create, read, readById, readBySkill, updateById, deleteById};
